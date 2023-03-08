@@ -4,11 +4,11 @@ package id.ac.ui.cs.advprog.tutorial4.smartphone.core.components.processor;
 public class SnackDragon implements Processor{
     @Override
     public Double getSpeed() {
-        return null;
+        return 4.0;
     }
 
     @Override
     public Double getPrice() {
-        return null;
+        return 500000.0;
     }
 }

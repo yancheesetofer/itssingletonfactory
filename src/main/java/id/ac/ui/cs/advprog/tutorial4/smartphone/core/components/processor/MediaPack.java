@@ -4,11 +4,11 @@ package id.ac.ui.cs.advprog.tutorial4.smartphone.core.components.processor;
 public class MediaPack implements Processor{
     @Override
     public Double getSpeed() {
-        return null;
+        return 3.6;
     }
 
     @Override
     public Double getPrice() {
-        return null;
+        return 380000.0;
     }
 }

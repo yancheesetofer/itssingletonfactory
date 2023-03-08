@@ -8,6 +8,8 @@ public abstract class SmartPhoneBuilder {
     public SmartPhone getSmartPhone(SmartPhoneBrand smartPhoneBrand){
         SmartPhone smartPhone = createSmartPhone(smartPhoneBrand);
         // TODO: do something here
+        smartPhone.create();
+        smartPhone.calculatePrice();
 
         return  smartPhone;
     }
