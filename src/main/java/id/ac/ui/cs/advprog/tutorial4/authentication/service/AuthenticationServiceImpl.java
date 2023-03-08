@@ -25,16 +25,32 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public void register(String username, String password){
         // TODO
+        if (accountRepository.doesUsernameExist(username)){
+            //if true throw exception
+            throw new UsernameAlreadyExistsException();
+        }
+        accountRepository.register(username, password);
     }
     
     @Override
     public String login(String username, String password){
         // TODO
-        return null;  // return token
+        if (!accountRepository.doesUsernameExist(username)){
+            throw new UsernameAlreadyExistsException();
+        }
+        if (!accountRepository.getPassword(username).equals(password)){
+            throw new InvalidPasswordException();
+            //INVALID PASSWORD
+        }
+        String newToken = Util.generateToken();
+        authenticationManager.registerNewToken(newToken,username);
+
+        return newToken;  // return token
     }
     
     @Override
     public void logout(String token){
+        authenticationManager.removeToken(token);
         // TODO
     }
     

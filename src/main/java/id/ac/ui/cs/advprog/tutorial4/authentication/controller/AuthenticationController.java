@@ -53,6 +53,13 @@ public class AuthenticationController {
         // TODO.
         //  Jangan lupa pertimbangkan kasus di mana pengguna yang logged-out tetapi masih tetap menekan tombol log-out.
         //  Pada kasus tersebut, cukup redirect:login saja tanpa perlu mengeluarkan pesan apapun
+        if(!Objects.equals(token, "")){
+            authenticationService.logout(token);
+            Cookie cookie = new Cookie("token", null);
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+            return "redirect:login";
+        }
         return "redirect:login";
     }
     

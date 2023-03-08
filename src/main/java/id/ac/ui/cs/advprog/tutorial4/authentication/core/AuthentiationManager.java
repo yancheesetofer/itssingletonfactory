@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.tutorial4.authentication.core;
 
+import id.ac.ui.cs.advprog.tutorial4.authentication.exceptions.UsernameAlreadyExistsException;
 import id.ac.ui.cs.advprog.tutorial4.authentication.exceptions.UsernameAlreadyLoggedIn;
 import id.ac.ui.cs.advprog.tutorial4.authentication.exceptions.InvalidTokenException;
 
@@ -13,9 +14,12 @@ public class AuthentiationManager {
     // boleh mengedit static attribute jika diperlukan
     private static AuthentiationManager instance;
     public static AuthentiationManager getInstance(){
-        return null;
+
+        if (instance == null){
+            instance = new AuthentiationManager();
+        };
+        return instance;
     }
-    
     
     private Map<String, String> tokenToUsernameMapping = new HashMap<>();
     
@@ -28,15 +32,27 @@ public class AuthentiationManager {
     
     public void registerNewToken(String token, String username){
         // TODO
+        if (tokenToUsernameMapping.containsValue(username)){
+            throw new UsernameAlreadyExistsException();
+        };
+        tokenToUsernameMapping.put(token, username);
     }
     
     public void removeToken(String token){
-        // TODO
+        if (!tokenToUsernameMapping.containsKey(token)){
+            throw new InvalidTokenException();
+
+        }
+        tokenToUsernameMapping.remove(token);// TODO
     }
     
     public String getUsername(String token){
         // TODO
-        return null;
+        String username = tokenToUsernameMapping.get(token);
+        if (username == null){
+            throw new InvalidTokenException();
+        }
+        return username;
     }
     
 }
