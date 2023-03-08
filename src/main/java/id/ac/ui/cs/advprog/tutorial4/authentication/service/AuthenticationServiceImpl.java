@@ -17,7 +17,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     AccountRepository accountRepository;
 
     // TODO inisialisasi authenticationManager yang sesuai
-    AuthentiationManager authenticationManager;
+    AuthentiationManager authenticationManager = AuthentiationManager.getInstance();
     
     // TODO
     //  Pada method-method di bawah ini, jangan lupa handle kasus untuk melakukan throw exception
