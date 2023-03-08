@@ -12,12 +12,10 @@ public class AuthentiationManager {
 
     // TODO lengkapi method getInstance
     // boleh mengedit static attribute jika diperlukan
-    private static AuthentiationManager instance;
+    private AuthentiationManager(){ tokenToUsernameMapping = new HashMap<>();}
+    private static AuthentiationManager instance = new AuthentiationManager();
     public static AuthentiationManager getInstance(){
 
-        if (instance == null){
-            instance = new AuthentiationManager();
-        };
         return instance;
     }
     
@@ -33,7 +31,7 @@ public class AuthentiationManager {
     public void registerNewToken(String token, String username){
         // TODO
         if (tokenToUsernameMapping.containsValue(username)){
-            throw new UsernameAlreadyExistsException();
+            throw new UsernameAlreadyLoggedIn();
         };
         tokenToUsernameMapping.put(token, username);
     }

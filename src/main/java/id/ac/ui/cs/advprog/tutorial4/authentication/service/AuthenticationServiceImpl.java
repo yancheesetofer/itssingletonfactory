@@ -36,7 +36,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public String login(String username, String password){
         // TODO
         if (!accountRepository.doesUsernameExist(username)){
-            throw new UsernameAlreadyExistsException();
+            throw new UsernameDoesNotExistException();
         }
         if (!accountRepository.getPassword(username).equals(password)){
             throw new InvalidPasswordException();
