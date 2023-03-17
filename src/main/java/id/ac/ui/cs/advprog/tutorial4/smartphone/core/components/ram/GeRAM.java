@@ -4,11 +4,11 @@ package id.ac.ui.cs.advprog.tutorial4.smartphone.core.components.ram;
 public class GeRAM implements RAM{
     @Override
     public Double getSize() {
-        return null;
+        return 8.0;
     }
 
     @Override
     public Double getPrice() {
-        return null;
+        return 220000.0;
     }
 }
